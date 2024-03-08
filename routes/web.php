@@ -20,7 +20,7 @@ Route::get("/cuadros", [CuadrosController::class, "index"])->name("arte.index");
 
 Route::get('/mostrar-formulario', [CuadrosController::class, 'mostrarFormulario'])->name('arte.mostrarFormulario');
 
-Route::get('/detalles-cuadro', [CuadrosController::class, 'detallesCuadro'])->name('arte.detallesCuadro');
+Route::get('/detalles-cuadro/{id}', [CuadrosController::class, 'detallesCuadro'])->name('arte.detallesCuadro');
 
 
 //  ----------------------- CRUD ------------------------------------

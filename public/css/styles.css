@@ -1,18 +1,61 @@
-html, body {
-    height: 100%;
-    background-color: #ffffff;
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Para prevenir el desplazamiento horizontal */
+  height: 100%;
+  background-color: #ffffff;
 }
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  box-shadow: 0px 3px 7px;
+  background-color: white; /* Puedes ajustar esto según tu diseño */
+}
+
+.nav-pills {
+  /* Ajusta los estilos según sea necesario */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ajusta la altura del encabezado según sea necesario */
+}
+
+.nav-item {
+  margin-right: 10px; /* Espaciado entre elementos si es necesario */
+}
+
+.nav-link {
+  color: black; /* Color del texto */
+  text-decoration: none; /* Quitar subrayado de los enlaces */
+  padding: 10px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.nav-link.active {
+  background-color: #e0e0e0; /* Color de fondo para el enlace activo */
+}
+
+h1{
+margin-top: 100px;
+}
+
 
 .form-holder {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
 }
 
-.form-holder .form-content {
+.form-holder .form-content { 
   position: relative;
   text-align: center;
   display: -webkit-box;

@@ -21,17 +21,32 @@ class CuadrosController extends Controller
         return view("show");
     }
 
-    public function detallesCuadro(){
-        return view("details");
+    public function detallesCuadro($id){
+        $cuadro = DB::select(" select * from cuadros where id=?", [$id]);
+    
+        if (!$cuadro) {
+            // Manejar el caso en el que no se encuentra el cuadro con el ID dado
+            return back()->with("incorrecto", "Cuadro no encontrado");
+        }
+    
+        return view("details")->with("cuadro", $cuadro[0]);
     }
     
     public function create(Request $request) {
         try {
+            
+            $request->validate([
+                'txtprecio' => 'numeric|regex:/^\d+(\.\d{1,2})?$/',
+                // Otras reglas de validación
+            ]);
+
+            $precio = floatval($request->txtprecio);
+
             $sql = DB::insert("INSERT INTO cuadros(id, nombre, autor, precio_euros, ubicacion, descripcion) VALUES (?, ?, ?, ?, ?, ?)", [
                 $request->txtcodigo,
                 $request->txtnombre,
                 $request->txtautor,
-                $request->txtprecio,
+                $precio,
                 $request->txtubicacion,
                 $request->txtdescripcion,
             ]);
