@@ -26,3 +26,33 @@ h3 {
     margin-left: 30px;
     
 }
+
+/* En tu hoja de estilos CSS */
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    position: relative;
+}
+
+.star {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background-image: url('../assets/img/estrella.png'); /* Puedes usar una imagen o algún otro método para representar la estrella */
+    background-size: cover;
+    cursor: pointer;
+}
+
+.star:hover:before,
+.star:hover ~ .star:before {
+    content: '\2605';
+    position: absolute;
+    color: #fdd835;
+}
+
+.star:before {
+    content: '\2606';
+    position: absolute;
+    color: #ddd;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CuadrosController;
+use App\Http\Controllers\ValoracionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ Route::get("/cuadros", [CuadrosController::class, "index"])->name("arte.index");
 Route::get('/mostrar-formulario', [CuadrosController::class, 'mostrarFormulario'])->name('arte.mostrarFormulario');
 
 Route::get('/detalles-cuadro/{id}', [CuadrosController::class, 'detallesCuadro'])->name('arte.detallesCuadro');
+
+Route::post('/cuadros/{cuadro}/votar', [ValoracionController::class, 'votar'])->name('cuadro.votar');
 
 
 //  ----------------------- CRUD ------------------------------------

@@ -67,13 +67,13 @@
                         <td>
                             <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{ $item->id }}"
                                 class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen-to-square">Editar</i>
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                         </td>
                         <td>
                             <a href="{{ route('arte.delete', $item->id) }}" onclick="return res()"
                                 class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash">eliminar</i>
+                                <i class="fa-solid fa-trash"></i>
                             </a>
                         </td>
                         <td>

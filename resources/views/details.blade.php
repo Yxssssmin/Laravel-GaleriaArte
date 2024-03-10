@@ -27,6 +27,41 @@
         <hr>
         <div id="map"></div>
     </div>
+
+    {{-- <div>
+        <h2>{{ $cuadro->nombre }}</h2>
+        <!-- Otras propiedades del cuadro -->
+    
+        @if($cuadro->votos > 0)
+            <p>Puntuación media: {{ number_format($cuadro->valoracion / $cuadro->votos, 1) }} ({{ $cuadro->votos }} votos)</p>
+        @else
+            <p>Este cuadro aún no ha sido votado.</p>
+        @endif
+    
+        <!-- Estrellas para la votación -->
+        <div class="rating">
+            @for ($i = 1; $i <= 5; $i++)
+                <span class="star" data-value="{{ $i }}" title="{{ $i }}"></span>
+            @endfor
+        </div>
+    
+        <!-- Formulario oculto para la votación -->
+        <form id="votarForm" method="post" action="{{ route('cuadro.votar', ['cuadro' => $cuadro->id]) }}">
+            @csrf
+            <input type="hidden" name="voto" id="voto" value="1"> <!-- Valor predeterminado, puedes cambiarlo según la lógica que prefieras -->
+        </form>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            // Manejar clics en estrellas
+            $('.star').on('click', function() {
+                var value = $(this).data('value');
+                $('#voto').val(value);
+                $('#votarForm').submit();
+            });
+        });
+    </script> --}}
     
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbfu-vRu7k7naT-Fh_457upAICHgZW1UI&callback=initAutocomplete&libraries=places&v=weekly"
