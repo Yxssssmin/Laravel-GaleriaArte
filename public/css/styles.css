@@ -1,7 +1,7 @@
-body, html {
+/* body, html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Para prevenir el desplazamiento horizontal */
+  overflow-x: hidden; 
   height: 100%;
   background-color: #ffffff;
 }
@@ -12,38 +12,38 @@ header {
   left: 0;
   width: 100vw;
   box-shadow: 0px 3px 7px;
-  background-color: white; /* Puedes ajustar esto según tu diseño */
+  background-color: white; 
 }
 
 .nav-pills {
-  /* Ajusta los estilos según sea necesario */
+
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Ajusta la altura del encabezado según sea necesario */
+  height: 100%; 
 }
 
 .nav-item {
-  margin-right: 10px; /* Espaciado entre elementos si es necesario */
+  margin-right: 10px; 
 }
 
 .nav-link {
-  color: black; /* Color del texto */
-  text-decoration: none; /* Quitar subrayado de los enlaces */
-  padding: 10px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
+  color: black; 
+  text-decoration: none; 
+  padding: 10px; 
+  border-radius: 5px; 
 }
 
 .nav-link.active {
-  background-color: #e0e0e0; /* Color de fondo para el enlace activo */
+  background-color: #e0e0e0; 
 }
 
 h1{
 margin-top: 100px;
-}
+} */
 
 
 .form-holder {

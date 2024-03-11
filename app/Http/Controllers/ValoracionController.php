@@ -19,11 +19,18 @@ class ValoracionController extends Controller
         DB::table('cuadros')
             ->where('id', $id)
             ->update([
-                'valoracion' => DB::raw('valoracion + ' . $request->input('voto')),
+                'valoracion' => DB::raw($request->input('voto')),
                 'votos' => DB::raw('votos + 1'),
             ]);
+        
+        $cuadroActualizado = DB::table('cuadros')->find($id);
 
+        $mediaVotos = $cuadroActualizado->votos > 0 ? $cuadroActualizado->valoracion / $cuadroActualizado->votos : 0;
 
-        return redirect()->route('arte.detallesCuadro', ['id' => $id])->with('success', '¡Votación exitosa!');
+        return response()->json([
+            'success' => true,
+            'mediaVotos' => $mediaVotos, // Redondear a dos decimales
+            'totalVotos' => $cuadroActualizado->votos,
+        ]);
     }
 }

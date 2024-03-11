@@ -40,3 +40,46 @@ function initAutocomplete() {
         });
     }
 }
+
+let contador = 0;
+
+function calificar(item) {
+    console.log(item);
+    contador = item.id[0];
+    let nombre = item.id.substring(1);
+
+    for (let i = 0; i < 5; i++) {
+
+        if (i < contador) {
+            document.getElementById((i + 1) + nombre).style.color = 'orange';
+        } else {
+            document.getElementById((i + 1) + nombre).style.color = 'black';
+        }
+    }
+}
+
+function calificarEstrellas(cuadroId) {
+    const voto = contador; // Utiliza el contador que se actualiza en la función calificar
+
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    // Realizar la solicitud AJAX utilizando jQuery
+    $.ajax({
+        url: `/cuadro/${cuadroId}/votar`,
+        method: 'POST',
+        data: { voto: voto, _token: token },
+        success: function (data) {
+            // Manejar la respuesta del servidor si es necesario
+            console.log("Valoración con exito!");
+
+            // Actualizar la interfaz con la nueva información
+            $('#mediaVotos').text(data.mediaVotos);
+            $('#totalVotos').text(data.totalVotos);
+
+            contador = 0;
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        }
+    });
+}

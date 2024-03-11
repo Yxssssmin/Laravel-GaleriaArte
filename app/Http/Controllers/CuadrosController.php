@@ -42,7 +42,7 @@ class CuadrosController extends Controller
 
             $precio = floatval($request->txtprecio);
 
-            $sql = DB::insert("INSERT INTO cuadros(id, nombre, autor, precio_euros, ubicacion, descripcion) VALUES (?, ?, ?, ?, ?, ?)", [
+            $sql = DB::insert(" INSERT INTO cuadros(id, nombre, autor, precio_euros, ubicacion, descripcion) VALUES (?, ?, ?, ?, ?, ?)", [
                 $request->txtcodigo,
                 $request->txtnombre,
                 $request->txtautor,
@@ -51,7 +51,7 @@ class CuadrosController extends Controller
                 $request->txtdescripcion,
             ]);
     
-            if ($sql) {
+            if ($sql == true) {
                 return redirect()->route('arte.index')->with("correcto", "Cuadro registrado correctamente");
             } else {
                 return back()->with("incorrecto", "Error al registrar");
@@ -102,8 +102,5 @@ class CuadrosController extends Controller
             return back()->with("incorrecto","Error al eliminar");
         }
     }
-
-
-
 
 }
