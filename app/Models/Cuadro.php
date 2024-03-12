@@ -14,5 +14,7 @@ class Cuadro extends Model
         'descripcion',
         'valoracion',
         'votos',
+        'created_at',
+        'updated_at',
     ];
 }

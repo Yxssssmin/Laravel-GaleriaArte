@@ -18,7 +18,7 @@ class ActualizarPrecios extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Actualizar precios cada 12 horas';
 
     /**
      * Execute the console command.

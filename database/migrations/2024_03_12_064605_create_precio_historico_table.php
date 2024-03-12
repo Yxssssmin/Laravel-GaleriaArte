@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cuadros', function (Blueprint $table) {
+        Schema::create('precio_historico', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('autor');
+            $table->unsignedBigInteger('cuadro_id');
+            $table->foreign('cuadro_id')->references('id')->on('cuadros');
             $table->decimal('precio_euros', 10, 2);
-            $table->string('ubicacion');
-            $table->text('descripcion');
-            $table->decimal('valoracion', 3, 2)->default(0.0);
-            $table->integer('votos')->default(0);
+            $table->decimal('precio_dolares', 10, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cuadros');
+        Schema::dropIfExists('precio_historico');
     }
 };

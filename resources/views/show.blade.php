@@ -62,8 +62,9 @@
                         <input type="text" class="form-control" id="txtautor" name="txtautor">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="txtprecio" class="form-label">Precio</label>
+                    <label for="txtprecio" id="precio" class="form-label">Precio</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">€</span>
                         <input type="number" class="form-control" id="txtprecio" name="txtprecio">
                     </div>
 

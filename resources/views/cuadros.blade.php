@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Galeria de Arte</title>
-
-    {{--         BOOTSTRAP           --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Agrega esta etiqueta script en la sección head de tu archivo Blade -->
-
-    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-
-
-</head>
+@extends('layouts.app')
 
 <body>
-
-    <div class="container">
-        <header class="d-flex justify-content-center py-3">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a href="{{ route('arte.bienvenida') }}" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('arte.index') }}" class="nav-link active">Cuadros</a>
-                </li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            </ul>
-        </header>
-    </div>
 
     <h1 class="text-center p-3">GALERÍA DE ARTE</h1>
 
@@ -67,18 +36,18 @@
                         <td>
                             <a href="" data-bs-toggle="modal" data-bs-target="#modalEditar{{ $item->id }}"
                                 class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen-to-square"></i>
+                                <i class="fa-solid fa-pen-to-square">✍🏼</i>
                             </a>
                         </td>
                         <td>
                             <a href="{{ route('arte.delete', $item->id) }}" onclick="return res()"
                                 class="btn btn-danger btn-sm">
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash">🗑️</i>
                             </a>
                         </td>
                         <td>
                             <a href="{{ route('arte.detallesCuadro', $item->id) }}" class="btn btn-light">
-                                <i class="fa-regular fa-eye">Ver detalles</i>
+                                <i class="fa-regular fa-eye">👁️</i>
                             </a>
                         </td>
 

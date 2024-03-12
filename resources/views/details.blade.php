@@ -18,7 +18,7 @@
             <h3>ID del Cuadro: {{ $cuadro->id }}</h3>
             <h3>Nombre: {{ $cuadro->nombre }}</h3>
             <h3>Autor: {{ $cuadro->autor }}</h3>
-            <h3>Precio: {{ $cuadro->precio_euros }}</h3>
+            <h3>Precio: {{ $cuadro->precio_euros }} €</h3>
             <div id="ubicacion">
                 <h3>Ubicación: {{ $cuadro->ubicacion }}</h3>
             </div>
@@ -31,7 +31,7 @@
                     <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="3"></span>
                     <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="4"></span>
                     <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer;" id="5"></span><br><br>
-                    <button class="btn btn-primary" onclick="calificarEstrellas({{ $cuadro->id }})">Calificar</button>
+                    <button class="boton" onclick="calificarEstrellas({{ $cuadro->id }})">Calificar</button>
                 </div>
             </div>
 
