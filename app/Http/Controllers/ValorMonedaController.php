@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 class ValorMonedaController extends Controller
 {
 
-    public function obtenerTipoDeCambio(Request $request, $idPrecio)
+    public function obtenerTipoDeCambio(Request $request, $id)
     {
         $response = Http::withHeaders([
             'apikey' => 'eSBO1alMhinPk6gAWxWA6JW6onNQOiJn',
@@ -18,27 +18,24 @@ class ValorMonedaController extends Controller
         $tipoDeCambio = $response->json('rates.USD');
 
         // Obtener el registro de precio_historico por ID
-        $precioHistorico = DB::table('precio_historico')->find($idPrecio);
+        $precioHistorico = DB::table('cuadros')->find($id);
 
-        if($precioHistorico) {
+        if ($precioHistorico) {
 
             $precioDolares = $precioHistorico->precio_euros * $tipoDeCambio;
 
-            DB::table('precio_historico')
-                ->where('id', $idPrecio)
+            DB::table('cuadros')
+                ->where('id', $id)
                 ->update([
-                    'precio_euros' => $precioHistorico->precio_euros,
-                    'precio_dolares' => $precioDolares,
+                    'precio_euros' => $precioDolares,
                 ]);
     
             return response()->json([
                 'tipoDeCambio' => $tipoDeCambio,
                 'precioDolares' => $precioDolares,
             ]);
-
         } else {
-            // Manejar el caso en que no se encuentre el registro de precio_historico
-            return response()->json(['error' => 'Registro no encontrado'], 404);
+            return response()->json(['error' => 'Registro no encontrado en la tabla cuadros'], 404);
         }
         
     }

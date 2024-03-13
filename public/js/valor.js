@@ -1,4 +1,5 @@
 function valorMoneda(precioId) {
+
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     $.ajax({

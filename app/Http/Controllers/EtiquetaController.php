@@ -6,34 +6,52 @@ use App\Http\Controllers\Controller;
 use App\Models\Cuadro;
 use App\Services\ApiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EtiquetaController extends Controller
 {
 
     private $apiService;
 
-    public function __construct(ApiService $apiService)
+    public function __construct()
     {
-        $this->apiService = $apiService;
+        $this->apiService = new ApiService;
     }
 
-    public function loginAndImport() {
-        $token = $this->apiService->login();
+    public function importItems() {
+        $cuadro = Cuadro::all()->first();
+        $itemList = [
+            [
+                "attrCategory" => "practicas",
+                "attrName" => "yasmintate",
+                "barCode" => $cuadro->id . "-CUAD",
+                "itemTitle" => $cuadro->nombre,
+            ]
+        ];
 
-        if($token) {
-            // $this->apiService->importItems($token);
-        }
-    }
+        $response = $this->apiService->batchImportItem($itemList);
 
-    public function obtenerDatosCuadro() {
-        $datosCuadros = Cuadro::all();
-
-        return $datosCuadros;
-    }
-
-    public function prepararDatosParaEnviar() {
-        $datosBDD = Cuadro::all();
-
+        return response()->json($response);
 
     }
+
+    public function batchBind() {
+
+        $tagItemList = [
+            [
+                'eslBarcode' => '',
+                'itemBarcode' => '',
+            ]
+        ];
+
+        $response = $this->apiService->batchBind($tagItemList);
+
+        return response()->json($response);
+    }
+
+    // public function obtenerDatosCuadro() {
+    //     $datosCuadros = Cuadro::all();
+
+    //     return $datosCuadros;
+    // }
 }

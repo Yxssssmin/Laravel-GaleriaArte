@@ -242,6 +242,26 @@ class APIService
 
     // ! API FUNCTIONS
 
+    function batchImportItem($itemList)
+    {
+        $data = [
+            'agencyId' => $this->settings->getCloudAgencyId(),
+            'merchantId' => $this->settings->getCloudMerchantId(),
+            'storeId' => '',
+            'itemList' => [$itemList]
+        ];
+
+        return $this->makeRequest('POST', '/item/batchImportItem', json_encode($data), $this->getToken());
+    }
     
 
+    function batchBind($tagItemList) {
+
+        $data = [
+            'storeId' => 1703841945006,
+            'tagItemBinds' => [$tagItemList]
+        ];
+
+        return $this->makeRequest('POST', '/bind/batchBind', json_encode($data), $this->getToken());
+    }
 }

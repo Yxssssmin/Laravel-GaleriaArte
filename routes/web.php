@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CuadrosController;
+use App\Http\Controllers\EtiquetaController;
 use App\Http\Controllers\ValoracionController;
 use App\Http\Controllers\ValorMonedaController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ Route::get('/detalles-cuadro/{id}', [CuadrosController::class, 'detallesCuadro']
 Route::post('/cuadro/{id}/votar', [ValoracionController::class, 'votar'])->name('cuadro.votar');
 
 Route::get('/cuadro/{id}/obtener-precio-dolar', [ValorMonedaController::class, 'obtenerTipoDeCambio'])->name('cuadro.obtenerTipoDeCambio');
+
+Route::post('/cuadro/{id}/addmac', [EtiquetaController::class, 'importItems'])->name('cuadro.importItems');
 
 //  ----------------------- CRUD ------------------------------------
 // ruta para añadir un cuadro

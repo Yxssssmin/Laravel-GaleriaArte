@@ -18,7 +18,9 @@
             <h3>ID del Cuadro: {{ $cuadro->id }}</h3>
             <h3>Nombre: {{ $cuadro->nombre }}</h3>
             <h3>Autor: {{ $cuadro->autor }}</h3>
-            <h3>Precio: {{ $cuadro->precio_euros }} €</h3>
+            <h3>Precio: {{ $cuadro->precio_euros }}</h3>
+            <button class="boton" onclick="valorMoneda({{ $cuadro->id }})">Change</button>
+           
             <div id="ubicacion">
                 <h3>Ubicación: {{ $cuadro->ubicacion }}</h3>
             </div>
@@ -44,6 +46,28 @@
         <hr>
         <div id="map"></div>
     </div>
+
+    <script>
+        function valorMoneda(precioId) {
+
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            $.ajax({
+                url: `/cuadro/${precioId}/obtener-precio-dolar`,
+                method: 'GET',
+                success: function(response) {
+                    var tipoDeCambio = response.tipoDeCambio;
+                    console.log('Tipo de cambio (EUR a USD): ' + tipoDeCambio);
+
+                    $('#tipoDeCambio').text(tipoDeCambio);
+                },
+                error: function(error) {
+                    console.error('Error al obtener el tipo de cambio:', error);
+                }
+            });
+
+        }
+    </script>
 
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
         integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
