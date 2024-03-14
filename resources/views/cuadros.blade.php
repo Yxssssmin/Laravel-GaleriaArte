@@ -14,6 +14,7 @@
 
     <div class="p-5">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
             @foreach ($datos as $item)
                 <div class="col">
                     <div class="card">
@@ -39,92 +40,103 @@
                             <a href="{{ route('arte.detallesCuadro', $item->id) }}" class="btn btn-light">
                                 <i class="fa-regular fa-eye"></i> 👁️
                             </a>
-                            <a href="{{ route('cuadro.importItems', $item->id) }}" class="btn btn-outline-secondary">
-                                + ETE
-                            </a>
-                        </div>
-    
-                       
-                    <!-- Modal de modificar datos -->
-                    <div class="modal fade" id="modalEditar{{ $item->id }}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar datos del producto
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
+
+                            <!-- Input group para el barcode y el botón -->
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="barcodeInput"
+                                    placeholder="Ingrese el valor de Barcode" aria-label="Barcode"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button data-id="{{ $item->id }}" class="btn btn-outline-secondary" type="button" id="importAndBindButton">+
+                                        ETE
+                                    </button>
                                 </div>
-                                <div class="modal-body">
-                                    <form action="{{ route('arte.update') }}" method="POST">
-                                        @csrf
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Id del cuadro</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtcodigo"
-                                                value="{{ $item->id }}" readonly>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Nombre del
-                                                cuadro</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtnombre"
-                                                value="{{ $item->nombre }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Autor del
-                                                cuadro</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtautor"
-                                                value="{{ $item->autor }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Precio del
-                                                cuadro</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtprecio"
-                                                value="{{ $item->precio_euros }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Ubicacion del
-                                                cuadro</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtubicacion"
-                                                value="{{ $item->ubicacion }}">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Descripcion del
-                                                cuadro</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="txtdescripcion"
-                                                value="{{ $item->descripcion }}">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="submit" class="btn btn-primary">Modificar</button>
-                                        </div>
-                                    </form>
+                            </div>
+
+                        </div>
+
+
+                        <!-- Modal de modificar datos -->
+                        <div class="modal fade" id="modalEditar{{ $item->id }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar datos del producto
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('arte.update') }}" method="POST">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Id del cuadro</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtcodigo"
+                                                    value="{{ $item->id }}" readonly>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Nombre del
+                                                    cuadro</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtnombre"
+                                                    value="{{ $item->nombre }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Autor del
+                                                    cuadro</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtautor"
+                                                    value="{{ $item->autor }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Precio del
+                                                    cuadro</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtprecio"
+                                                    value="{{ $item->precio_euros }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Ubicacion del
+                                                    cuadro</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtubicacion"
+                                                    value="{{ $item->ubicacion }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="exampleInputEmail1" class="form-label">Descripcion del
+                                                    cuadro</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                                    aria-describedby="emailHelp" name="txtdescripcion"
+                                                    value="{{ $item->descripcion }}">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary">Modificar</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
-    
+
 
     <a href="{{ route('arte.mostrarFormulario') }}" class="btn btn-success" style="margin-left: 40%">Añadir
         producto</a><br>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbfu-vRu7k7naT-Fh_457upAICHgZW1UI&callback=initAutocomplete&libraries=places&v=weekly"
         async defer></script>
-    <script src="{{ asset('./js/maps.js') }}"></script>
+    <script src="{{ asset('./js/cuadros.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>

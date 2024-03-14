@@ -22,7 +22,7 @@ class APIService
 
             $loginData = $this->loginCloud();
             return $loginData['token'];
-
+            
         } else { return $this->settings->getToken(); }
     }
 
@@ -31,16 +31,16 @@ class APIService
 
         try {
             $publicKey = $this->getErpPublicKey();
-            $passwd = config('app.cloud_password');
+            $passwd = $this->settings->getCloudPassword();
             $encryptedPasswd = $this->encryptTextWithPublicKey($this->addHeaderAndFooterToPublicKey($publicKey), $passwd);
         } catch (Exception $e) {
             die("Error: " . $e->getMessage());
         }
-
+ 
         $body = [
-            'account' => config('app.cloud_account'),
-            'password' => $encryptedPasswd,
-            'loginType' => config('app.cloud_login_type')
+            'account' => $this->settings->getCloudAccount(),
+            'loginType' => config('app.cloud_login_type'),
+            'password' => $encryptedPasswd
         ];
 
         $loginData = json_decode($this->makeRequest('POST', '/user/login', json_encode($body)), true);
@@ -48,6 +48,7 @@ class APIService
         $token = $loginData['data']['token'];
         $merchantId = $loginData['data']['currentUser']['merchantId'];
         $agencyId = $loginData['data']['currentUser']['agencyId'];
+
 
         $this->updateCloudInfo($token, $merchantId, $agencyId, $encryptedPasswd);
 
@@ -247,10 +248,10 @@ class APIService
         $data = [
             'agencyId' => $this->settings->getCloudAgencyId(),
             'merchantId' => $this->settings->getCloudMerchantId(),
-            'storeId' => '',
+            'storeId' => $this->settings->getCloudStoreId(),
             'itemList' => [$itemList]
         ];
-
+        
         return $this->makeRequest('POST', '/item/batchImportItem', json_encode($data), $this->getToken());
     }
     
@@ -261,6 +262,7 @@ class APIService
             'storeId' => 1703841945006,
             'tagItemBinds' => [$tagItemList]
         ];
+        
 
         return $this->makeRequest('POST', '/bind/batchBind', json_encode($data), $this->getToken());
     }

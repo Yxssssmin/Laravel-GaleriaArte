@@ -18,40 +18,68 @@ class Settings extends Model
 
     public function getToken()
     {
-        return $this->cloud_token;
-    }
-
-    public function updateCloudPassword($token)
-    {
-        $this->cloud_password = $token;
-        $this->save();
-    }
-
-    public function updateToken($encryptedPasswd)
-    {
-        $this->cloud_token = $encryptedPasswd;
-        $this->save();
-    }
-
-    public function updateCloudMerchantId($merchantId)
-    {
-        $this->cloud_merchantId = $merchantId;
-        $this->save();
-    }
-
-    public function updateCloudAgencyId($agencyId)
-    {
-        $this->cloud_agencyId = $agencyId;
-        $this->save();
+        $value = $this->where('name', 'cloud_token')->value('valor');
+        return $value;
     }
 
     public function getCloudAgencyId()
     {
-        return $this->cloud_agencyId;
+        $value = $this->where('name', 'cloud_agencyId')->value('valor');
+        return (int)$value;
     }
 
     public function getCloudMerchantId() {
-        return $this->cloud_merchantId;
+        $value = $this->where('name', 'cloud_merchantId')->value('valor');
+        return (int)$value;
     }
+
+    public function getCloudPassword() {
+        $value = $this->where('name', 'cloud_password')->value('valor');
+        return $value;
+    }
+
+    public function getCloudAccount() {
+        $value = $this->where('name', 'cloud_account')->value('valor');
+        return $value;
+    }
+
+    public function getCloudLogintype() {
+        $value = $this->where('name', 'cloud_login_type')->value('valor');
+        return (int)$value;
+    }
+
+    public function getCloudStoreId() {
+        $value = $this->where('name', 'cloud_storeId')->value('valor');
+        return (int)$value;
+    }
+
+    public function updateCloudPassword($token)
+    {
+        $setting = $this->where('name', 'cloud_password')->first();
+        $setting->valor = $token;
+        $setting->save();
+    }
+
+    public function updateToken($encryptedPasswd)
+    {
+        $setting = $this->where('name', 'cloud_token')->first();
+        $setting->valor = $encryptedPasswd;
+        $setting->save();
+    }
+
+    public function updateCloudMerchantId($merchantId)
+    {
+        $setting = $this->where('name', 'cloud_merchantId')->first();
+        $setting->valor = $merchantId;
+        $setting->save();
+    }
+
+    public function updateCloudAgencyId($agencyId)
+    {
+        $setting = $this->where('name', 'cloud_agencyId')->first();
+        $setting->valor = $agencyId;
+        $setting->save();
+    }
+
 
 }

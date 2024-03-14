@@ -29,7 +29,7 @@ Route::post('/cuadro/{id}/votar', [ValoracionController::class, 'votar'])->name(
 
 Route::get('/cuadro/{id}/obtener-precio-dolar', [ValorMonedaController::class, 'obtenerTipoDeCambio'])->name('cuadro.obtenerTipoDeCambio');
 
-Route::post('/cuadro/{id}/addmac', [EtiquetaController::class, 'importItems'])->name('cuadro.importItems');
+Route::post('/cuadro/import-item/{cuadro_id}', [EtiquetaController::class, 'importAndBindItems'])->name('etiqueta.importAndBindItems');
 
 //  ----------------------- CRUD ------------------------------------
 // ruta para añadir un cuadro

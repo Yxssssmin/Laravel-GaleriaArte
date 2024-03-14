@@ -185,4 +185,7 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'api_base_url' => env('API_BASE_URL', false),
+    'cloud_login_type' => env('CLOUD_LOGIN_TYPE', 3),
+
 ];
