@@ -40,5 +40,3 @@ Route::post("/modificar-cuadro", [CuadrosController::class, "update"])->name("ar
 
 // ruta para añadir un cuadro
 Route::get("/eliminar-cuadro-{id}", [CuadrosController::class, "delete"])->name("arte.delete");
-
-

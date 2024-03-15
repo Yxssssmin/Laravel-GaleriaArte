@@ -43,8 +43,9 @@ class APIService
             'password' => $encryptedPasswd
         ];
 
-        $loginData = json_decode($this->makeRequest('POST', '/user/login', json_encode($body)), true);
 
+        $loginData = json_decode($this->makeRequest('POST', '/user/login', json_encode($body)), true);
+        
         $token = $loginData['data']['token'];
         $merchantId = $loginData['data']['currentUser']['merchantId'];
         $agencyId = $loginData['data']['currentUser']['agencyId'];
@@ -64,7 +65,7 @@ class APIService
      */
     private function updateCloudInfo($token, $merchantId, $agencyId, $encryptedPasswd)
     {
-        $this->settings->updateCloudPassword($token);
+        // $this->settings->updateCloudPassword($token);
         $this->settings->updateToken($encryptedPasswd);
         $this->settings->updateCloudMerchantId($merchantId);
         $this->settings->updateCloudAgencyId($agencyId);
@@ -249,8 +250,10 @@ class APIService
             'agencyId' => $this->settings->getCloudAgencyId(),
             'merchantId' => $this->settings->getCloudMerchantId(),
             'storeId' => $this->settings->getCloudStoreId(),
+            'unitName' => 1,
             'itemList' => [$itemList]
         ];
+
         
         return $this->makeRequest('POST', '/item/batchImportItem', json_encode($data), $this->getToken());
     }
@@ -263,7 +266,6 @@ class APIService
             'tagItemBinds' => [$tagItemList]
         ];
         
-
         return $this->makeRequest('POST', '/bind/batchBind', json_encode($data), $this->getToken());
     }
 }

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#importAndBindButton').click(function(){
+    $('#importAndBindButton').click(function(){ 
         
         var cuadroId = $(this).data('id');
         var barcodeValue = $('#barcodeInput').val();
